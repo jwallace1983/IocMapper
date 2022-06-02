@@ -1,5 +1,7 @@
-﻿using IocMapper.Microsoft.DependencyInjection.UnitTests.Samples;
+﻿using IocMapper.Microsoft.DependencyInjection.UnitTests.ExternalLibrary;
+using IocMapper.Microsoft.DependencyInjection.UnitTests.Samples;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace IocMapper.Microsoft.DependencyInjection.UnitTests
 {
@@ -12,46 +14,48 @@ namespace IocMapper.Microsoft.DependencyInjection.UnitTests
             var services = new ServiceCollection();
 
             // Act
-            services.AddIocMappings();
+            services.AddIocMappings(typeof(IExternalService));
 
             // Assert
             services.Should().NotBeNullOrEmpty();
         }
 
-        [Fact]
-        public void SelfReferenceTest()
+        [Theory]
+        [InlineData(typeof(ILocalService))] // Calling assembly
+        [InlineData(typeof(IExternalService))] // External library included
+        [InlineData(typeof(Settings))] // Self-reference
+        public void GetServiceTest(Type type)
         {
             // Arrange
             var target = new ServiceCollection()
-                .AddIocMappings().BuildServiceProvider();
+                .AddIocMappings(typeof(IExternalService))
+                .BuildServiceProvider();
 
             // Act
-            var settings = target.GetService<Settings>();
+            var service = target.GetService(type);
 
             // Assert
-            settings.Should().NotBeNull();
+            service.Should().NotBeNull();
         }
 
-        [Fact]
-        public void LifetimeTest_()
+        [Theory]
+        [InlineData(typeof(ILifetimeSingletonService), 1)]
+        [InlineData(typeof(ILifetimeTransientService), 0)]
+        [InlineData(typeof(ILifetimeScopedService), 1)]
+        public void LifetimesTest(Type type, int expected)
         {
             // Arrange
             var target = new ServiceCollection()
                 .AddIocMappings().BuildServiceProvider();
-            var settings1 = target.GetService<Settings>();
-            var localService1 = target.GetService<ILocalService>();
 
             // Act
-            settings1.Counter++;
-            localService1.Counter++;
-            var settings2 = target.GetService<Settings>();
-            var localService2 = target.GetService<ILocalService>();
+            var service = target.GetService(type) as LifetimeServiceBase;
+            service.Counter++;
+            var service2 = target.GetService(type) as LifetimeServiceBase;
 
             // Assert
-            settings1.Counter.Should().Be(1);
-            settings2.Counter.Should().Be(1);
-            localService1.Counter.Should().Be(1);
-            localService2.Counter.Should().Be(0);
+            service.Counter.Should().Be(1);
+            service2.Counter.Should().Be(expected);
         }
 
     }

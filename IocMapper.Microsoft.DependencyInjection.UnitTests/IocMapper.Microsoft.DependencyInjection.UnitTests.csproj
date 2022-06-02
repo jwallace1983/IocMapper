@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IocMapper.Microsoft.DependencyInjection.UnitTests.ExternalLibrary\IocMapper.Microsoft.DependencyInjection.UnitTests.ExternalLibrary.csproj" />
     <ProjectReference Include="..\IocMapper.Microsoft.DependencyInjection\IocMapper.Microsoft.DependencyInjection.csproj" />
   </ItemGroup>
 

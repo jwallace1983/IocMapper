@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IocMapper.UnitTests", "IocM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft.DependencyInjection", "Microsoft.DependencyInjection", "{EF5BA51B-72DA-42C5-8FEE-B5A7BD7B5B45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocMapper.Microsoft.DependencyInjection.UnitTests.ExternalLibrary", "IocMapper.Microsoft.DependencyInjection.UnitTests.ExternalLibrary\IocMapper.Microsoft.DependencyInjection.UnitTests.ExternalLibrary.csproj", "{89E0ED32-E8C8-445B-A09D-A6A25AFFDC88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{91C7BD23-8696-453F-9941-455370C1CAAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91C7BD23-8696-453F-9941-455370C1CAAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91C7BD23-8696-453F-9941-455370C1CAAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89E0ED32-E8C8-445B-A09D-A6A25AFFDC88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89E0ED32-E8C8-445B-A09D-A6A25AFFDC88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89E0ED32-E8C8-445B-A09D-A6A25AFFDC88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89E0ED32-E8C8-445B-A09D-A6A25AFFDC88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{2E8A328B-DF69-4B4D-B612-387F073E21E5} = {EF5BA51B-72DA-42C5-8FEE-B5A7BD7B5B45}
 		{73E3DD10-8FA2-4B9D-872E-0DC71B85C3F7} = {45B17494-BD2C-45DA-A031-88DC2445A028}
 		{91C7BD23-8696-453F-9941-455370C1CAAA} = {45B17494-BD2C-45DA-A031-88DC2445A028}
+		{89E0ED32-E8C8-445B-A09D-A6A25AFFDC88} = {EF5BA51B-72DA-42C5-8FEE-B5A7BD7B5B45}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28BC1DA1-4D61-43EB-BADB-49BD31E049B5}
