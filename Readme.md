@@ -53,6 +53,16 @@ Also, map a class to itself to inject specific class without a specific interfac
     [Ioc(Lifetimes.Singleton, Target = typeof(Settings))]
     public class Settings { }
 
+## Map Across Libraries
+
+Add external libraries in addition to calling library with just a type from each library to include:
+
+    builder.Services.AddIocMappings(
+        typeof(IExternalService),
+        typeof(IOtherService));
+ 
+Easily integrate dependencies across multiple libraries whether using onion/clean architecture, layered architecture, or just separate libraries.
+
 ## A Note on Complexity
 
 This tool is meant to make IOC mapping easier. It is not intended to cover all possible ways to register dependencies, otherwise it would just become the tool it is trying to simplify and become too complex itself.
