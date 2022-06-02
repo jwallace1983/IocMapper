@@ -47,12 +47,16 @@ namespace IocMapper.UnitTests
             results.Should().Contain(m => m.Service == typeof(IMultiService)
                 && m.Implementation == typeof(MultiService)
                 && m.Lifetime == Lifetimes.Transient);
-            results.Should().HaveCount(3);
+            results.Should().Contain(m => m.Service == typeof(Settings)
+                && m.Implementation == typeof(Settings)
+                && m.Lifetime == Lifetimes.Singleton);
+            results.Should().HaveCount(4);
         }
 
         [Theory]
         [InlineData(typeof(DefaultService), null, typeof(IDefaultService), null)] // Single interface
         [InlineData(typeof(MultiService), typeof(IMultiService), typeof(IMultiService), null)] // Multi service
+        [InlineData(typeof(Settings), typeof(Settings), typeof(Settings), null)] // Self mapping
         [InlineData(typeof(MultiService), null, null, "Multiple interfaces found")] // Error
         [InlineData(typeof(NoInterfaceService), null, null, "No interfaces found")] // Error
         [InlineData(typeof(MultiService), typeof(IDefaultService), null, "Target service not implemented")] // Error

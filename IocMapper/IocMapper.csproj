@@ -1,8 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>disable</Nullable>
+	<Version>1.0.0</Version>
+    <Title>IocMapper</Title>
+    <Authors>Simplelink</Authors>
+    <Company>Simplelink</Company>
+    <Copyright>2022</Copyright>
+    <Description>A tool to simplify mapping interfaces and implementations for dependency injection and IOC.</Description>
+    <RepositoryUrl>https://github.com/jwallace1983/IocMapper</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Initial version of the tool</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/jwallace1983/IocMapper</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>
