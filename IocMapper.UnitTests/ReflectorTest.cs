@@ -21,7 +21,7 @@ namespace IocMapper.UnitTests
             // Arrange
             // Act
             Reflector.AddAssembly(typeof(ReflectorTest));
-            Reflector.AddAssembly(typeof(LifetimeService));
+            Reflector.AddAssembly(typeof(LifetimeService).Assembly);
             Reflector.AddAssembly(typeof(IDefaultService));
 
             // Assert
@@ -60,7 +60,6 @@ namespace IocMapper.UnitTests
         [InlineData(typeof(MultiService), null, null, "Multiple interfaces found")] // Error
         [InlineData(typeof(NoInterfaceService), null, null, "No interfaces found")] // Error
         [InlineData(typeof(MultiService), typeof(IDefaultService), null, "Target service not implemented")] // Error
-        // TBD: Other errors
         public void GetMappingTest(Type implementationType, Type target, Type expectedService, string expectedError)
         {
             // Arrange
