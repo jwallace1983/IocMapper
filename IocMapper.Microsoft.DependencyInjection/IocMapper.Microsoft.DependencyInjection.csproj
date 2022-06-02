@@ -1,11 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net461</TargetFrameworks>
+    <Nullable>disable</Nullable>
+	<Version>1.0.1</Version>
+    <Title>IocMapper.Microsoft.DependencyInjection</Title>
+    <Authors>Simplelink</Authors>
+    <Company>Simplelink</Company>
+    <Copyright>2022</Copyright>
+    <Description>Use Microsoft Dependency Injection to simplify mapping IOC dependencies.</Description>
+    <RepositoryUrl>https://github.com/jwallace1983/IocMapper</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Initial version</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/jwallace1983/IocMapper</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IocMapper" Version="1.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 

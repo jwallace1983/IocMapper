@@ -10,11 +10,13 @@ namespace IocMapper
         public static IEnumerable<Assembly> Assemblies => _assemblies;
         private static readonly List<Assembly> _assemblies = new List<Assembly>();
 
-        public static void AddAssembly(Type type)
+        public static void AddAssembly(Type type) => AddAssembly(type.Assembly);
+
+        public static void AddAssembly(Assembly assembly)
         {
-            if (_assemblies.Any(a => a.FullName.Equals(type.Assembly.FullName)))
+            if (_assemblies.Any(a => a.FullName.Equals(assembly.FullName)))
                 return; // Guard: already added
-            _assemblies.Add(type.Assembly);
+            _assemblies.Add(assembly);
         }
 
         public static IEnumerable<IocMapping> GetMappings()
@@ -49,7 +51,8 @@ namespace IocMapper
                     throw new IocMappingException(mapping.Implementation, "No interfaces found");
                 mapping.Service = interfaces[0];
             }
-            else if (interfaces.Any(m => m == mapping.Service) == false)
+            else if (mapping.Service != implementationType
+                && interfaces.Any(m => m == mapping.Service) == false)
             {
                 throw new IocMappingException(mapping.Implementation, "Target service not implemented");
             }    
