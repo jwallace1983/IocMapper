@@ -4,6 +4,8 @@
     public interface IService1 { }
     public interface IService2 { }
 
+    public abstract class MultiServiceBase { }
+
     [Ioc(Target = typeof(IMultiService))]
-    public class MultiInterfaceService : IService1, IService2, IMultiService { }
+    public class MultiService : MultiServiceBase, IService1, IService2, IMultiService { }
 }
