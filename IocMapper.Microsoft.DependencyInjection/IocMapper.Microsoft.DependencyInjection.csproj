@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net472;net48;net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <Nullable>disable</Nullable>
-	<Version>1.0.2</Version>
+    <ImplicitUsings>disable</ImplicitUsings>
+	<Version>1.1.0</Version>
     <Title>IocMapper.Microsoft.DependencyInjection</Title>
     <Authors>Simplelink</Authors>
     <Company>Simplelink</Company>
