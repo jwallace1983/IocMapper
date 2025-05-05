@@ -8,7 +8,7 @@
     <Title>IocMapper.Microsoft.DependencyInjection</Title>
     <Authors>Simplelink</Authors>
     <Company>Simplelink</Company>
-    <Copyright>2023</Copyright>
+    <Copyright>2025</Copyright>
     <Description>Use Microsoft Dependency Injection to simplify mapping IOC dependencies.</Description>
     <RepositoryUrl>https://github.com/jwallace1983/IocMapper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="IocMapper" Version="1.0.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
   </ItemGroup>
 
 </Project>

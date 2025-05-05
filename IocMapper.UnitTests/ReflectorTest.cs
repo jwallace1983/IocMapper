@@ -1,5 +1,6 @@
 ﻿using IocMapper.UnitTests.Mocks;
 using System;
+using System.Linq;
 
 namespace IocMapper.UnitTests
 {
@@ -13,7 +14,7 @@ namespace IocMapper.UnitTests
             var results = Reflector.Assemblies;
 
             // Assert
-            results.Should().NotBeNull();
+            results.ShouldNotBeNull();
         }
 
         [Fact]
@@ -26,7 +27,7 @@ namespace IocMapper.UnitTests
             Reflector.AddAssembly(typeof(IDefaultService));
 
             // Assert
-            Reflector.Assemblies.Should().HaveCount(1);
+            Reflector.Assemblies.Count().ShouldBe(1);
         }
 
         [Fact]
@@ -39,19 +40,19 @@ namespace IocMapper.UnitTests
             var results = Reflector.GetMappings();
 
             // Assert
-            results.Should().Contain(m => m.Service == typeof(IDefaultService)
+            results.ShouldContain(m => m.Service == typeof(IDefaultService)
                 && m.Implementation == typeof(DefaultService)
                 && m.Lifetime == Lifetimes.Transient);
-            results.Should().Contain(m => m.Service == typeof(ILifetimeService)
+            results.ShouldContain(m => m.Service == typeof(ILifetimeService)
                 && m.Implementation == typeof(LifetimeService)
                 && m.Lifetime == Lifetimes.Singleton);
-            results.Should().Contain(m => m.Service == typeof(IMultiService)
+            results.ShouldContain(m => m.Service == typeof(IMultiService)
                 && m.Implementation == typeof(MultiService)
                 && m.Lifetime == Lifetimes.Transient);
-            results.Should().Contain(m => m.Service == typeof(Settings)
+            results.ShouldContain(m => m.Service == typeof(Settings)
                 && m.Implementation == typeof(Settings)
                 && m.Lifetime == Lifetimes.Singleton);
-            results.Should().HaveCount(4);
+            results.Count().ShouldBe(4);
         }
 
         [Theory]
@@ -72,16 +73,16 @@ namespace IocMapper.UnitTests
                 var result = attribute.GetMapping(implementationType);
 
                 // Assert
-                expectedError.Should().BeNullOrEmpty();
-                result.Implementation.Should().Be(implementationType);
-                result.Lifetime.Should().Be(Lifetimes.Singleton);
-                result.Service.Should().Be(expectedService);
+                expectedError.ShouldBeNullOrEmpty();
+                result.Implementation.ShouldBe(implementationType);
+                result.Lifetime.ShouldBe(Lifetimes.Singleton);
+                result.Service.ShouldBe(expectedService);
             }
             catch (IocMappingException ex)
             {
                 // Assert
-                ex.Message.Should().Be(expectedError);
-                ex.Implementation.Should().Be(implementationType);
+                ex.Message.ShouldBe(expectedError);
+                ex.Implementation.ShouldBe(implementationType);
             }
         }
     }

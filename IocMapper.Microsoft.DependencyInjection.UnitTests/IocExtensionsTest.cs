@@ -17,7 +17,7 @@ namespace IocMapper.Microsoft.DependencyInjection.UnitTests
             services.AddIocMappings(typeof(IExternalService));
 
             // Assert
-            services.Should().NotBeNullOrEmpty();
+            services.Count.ShouldNotBe(0);
         }
 
         [Theory]
@@ -35,7 +35,7 @@ namespace IocMapper.Microsoft.DependencyInjection.UnitTests
             var service = target.GetService(type);
 
             // Assert
-            service.Should().NotBeNull();
+            service.ShouldNotBeNull();
         }
 
         [Theory]
@@ -54,8 +54,8 @@ namespace IocMapper.Microsoft.DependencyInjection.UnitTests
             var service2 = target.GetService(type) as LifetimeServiceBase;
 
             // Assert
-            service.Counter.Should().Be(1);
-            service2.Counter.Should().Be(expected);
+            service.Counter.ShouldBe(1);
+            service2.Counter.ShouldBe(expected);
         }
 
     }
