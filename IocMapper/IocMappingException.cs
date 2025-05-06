@@ -6,7 +6,7 @@ namespace IocMapper
     {
         public Type Implementation { get; }
 
-        public IocMappingException() : base() { }
+        public IocMappingException() : base("mapping-error") { }
 
         public IocMappingException(Type implementation, string error = null) : base(error)
         {
