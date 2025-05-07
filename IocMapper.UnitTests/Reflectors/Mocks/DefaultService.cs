@@ -1,4 +1,4 @@
-﻿namespace IocMapper.UnitTests.Mocks
+﻿namespace IocMapper.UnitTests.Reflectors.Mocks
 {
     public interface IDefaultService { }
 

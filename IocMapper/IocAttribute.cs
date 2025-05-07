@@ -3,17 +3,12 @@
 namespace IocMapper
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class IocAttribute : Attribute
+    public class IocAttribute(Lifetimes lifetime) : Attribute
     {
-        public Lifetimes Lifetime { get; }
+        public Lifetimes Lifetime { get; } = lifetime;
 
         public Type Target { get; set; }
 
         public IocAttribute() : this(Lifetimes.Transient) { }
-
-        public IocAttribute(Lifetimes lifetime)
-        {
-            this.Lifetime = lifetime;
-        }
     }
 }

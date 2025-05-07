@@ -1,42 +1,34 @@
-﻿using System;
+﻿using IocMapper.Mediator;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
-namespace IocMapper.Mediator
+namespace IocMapper.Reflectors
 {
-    public static class MediatorReflector
+    public class MediatorReflector : ReflectorBase, IMediatorReflector
     {
         private static readonly string HANDLER_NAMESPACE = typeof(IRequestHandler<>).Namespace;
+
         private static readonly Type HANDLER_NO_RESPONSE = typeof(IRequestHandler<>);
+
         private static readonly Type HANDLER_WITH_RESPONSE = typeof(IRequestHandler<,>);
 
-        public static IEnumerable<Assembly> Assemblies => _assemblies;
-        private static readonly List<Assembly> _assemblies = [];
+        public Dictionary<string, MediatorMapping> Mappings { get; } = [];
 
-        public static void AddAssembly(Type type) => AddAssembly(type.Assembly);
+        public MediatorReflector(params Type[] types) : base(types) { }
 
-        public static void AddAssembly(Assembly assembly)
+        public MediatorReflector(params Assembly[] assemblies) : base(assemblies) { }
+
+        public override void AddMappingFromType(IServiceCollection services, Type type)
         {
-            if (_assemblies.Any(a => a.FullName.Equals(assembly.FullName)))
-                return; // Guard: already added
-            _assemblies.Add(assembly);
-        }
-
-        public static Dictionary<string, MediatorMapping> GetMappings()
-        {
-            var mappings = new Dictionary<string, MediatorMapping>();
-            foreach (var assembly in _assemblies)
+            var mapping = GetMediatorMapping(type);
+            if (mapping != null)
             {
-                foreach (var type in assembly.GetTypes())
-                {
-                    var handlerType = GetMediatorMapping(type);
-                    if (handlerType == null)
-                        continue; // Not found
-                    mappings[handlerType.RequestType.GetMediatorMappingKey()] = handlerType;
-                }
+                var mappingKey = this.GetMediatorMappingKey(mapping.RequestType);
+                Mappings[mappingKey] = mapping;
+                services.AddTransient(mapping.HandlerType);
             }
-            return mappings;
         }
 
         public static MediatorMapping GetMediatorMapping(Type type)
@@ -58,7 +50,7 @@ namespace IocMapper.Mediator
             return null; // Otherwise, not found
         }
 
-        public static string GetMediatorMappingKey(this Type type)
+        public string GetMediatorMappingKey(Type type)
             => $"{type.Namespace}.{type.Name}";
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IocMapper
+namespace IocMapper.Reflectors
 {
     public class IocMapping
     {

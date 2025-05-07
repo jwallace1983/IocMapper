@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IocMapper.Mediator
+namespace IocMapper.Reflectors
 {
     public class MediatorMapping(Type handlerType, Type requestType, Type responseType = null)
     {
