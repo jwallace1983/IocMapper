@@ -5,12 +5,8 @@ using System.Reflection;
 
 namespace IocMapper.Reflectors
 {
-    public class IocReflector : ReflectorBase
+    public class IocReflector(params Type[] types) : ReflectorBase(types)
     {
-        public IocReflector(params Type[] types) : base(types) { }
-
-        public IocReflector(params Assembly[] assemblies) : base(assemblies) { }
-
         public override void AddMappingFromType(IServiceCollection services, Type type)
         {
             var mapping = GetMapping(type);

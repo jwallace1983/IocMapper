@@ -1,4 +1,4 @@
-﻿namespace Samples.Microsoft.DependencyInjection.WebApiNet6.Models
+﻿namespace Samples.Microsoft.DependencyInjection.WebApiNet.Models
 {
     public class WeatherForecast
     {

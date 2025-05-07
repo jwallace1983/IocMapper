@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace IocMapper.Reflectors
 {
-    public class MediatorReflector : ReflectorBase, IMediatorReflector
+    public class MediatorReflector(params Type[] types) : ReflectorBase(types), IMediatorReflector
     {
         private static readonly string HANDLER_NAMESPACE = typeof(IRequestHandler<>).Namespace;
 
@@ -15,10 +15,6 @@ namespace IocMapper.Reflectors
         private static readonly Type HANDLER_WITH_RESPONSE = typeof(IRequestHandler<,>);
 
         public Dictionary<string, MediatorMapping> Mappings { get; } = [];
-
-        public MediatorReflector(params Type[] types) : base(types) { }
-
-        public MediatorReflector(params Assembly[] assemblies) : base(assemblies) { }
 
         public override void AddMappingFromType(IServiceCollection services, Type type)
         {

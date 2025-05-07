@@ -14,16 +14,8 @@ namespace IocMapper.Reflectors
         
         public ReflectorBase(Type[] types)
         {
-            if (types.Length == 0)
-                this.AddAssembly(Assembly.GetCallingAssembly());
             foreach (var type in types)
                 this.AddAssembly(type.Assembly);
-        }
-
-        public ReflectorBase(Assembly[] assemblies)
-        {
-            foreach (var assembly in assemblies)
-                this.AddAssembly(assembly);
         }
 
         public void AddAssembly(Assembly assembly)

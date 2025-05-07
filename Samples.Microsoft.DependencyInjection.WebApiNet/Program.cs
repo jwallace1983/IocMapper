@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Samples.Microsoft.DependencyInjection.WebApiNet6.Services;
 
 // Build
 var builder = WebApplication.CreateBuilder(args);
 builder.Services
-    .AddIocMappings(typeof(IWeatherService)) // Add custom mappings (optionally provide file from any binaries needed)
+    .AddIocMappings()
+    .AddMediator()
     .AddControllers();
 
 // Configure

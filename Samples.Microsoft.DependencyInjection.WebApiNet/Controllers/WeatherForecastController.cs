@@ -1,18 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
-using Samples.Microsoft.DependencyInjection.WebApiNet6.Services;
+using Samples.Microsoft.DependencyInjection.WebApiNet.Services;
 using System.Threading.Tasks;
 
-namespace Samples.Microsoft.DependencyInjection.WebApiNet6.Controllers
+namespace Samples.Microsoft.DependencyInjection.WebApiNet.Controllers
 {
     [ApiController, Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController(IWeatherService weatherService) : ControllerBase
     {
-        private readonly IWeatherService _weatherService;
-
-        public WeatherForecastController(IWeatherService weatherService)
-        {
-            _weatherService = weatherService;
-        }
+        private readonly IWeatherService _weatherService = weatherService;
 
         [HttpGet]
         public async Task<IActionResult> Get()

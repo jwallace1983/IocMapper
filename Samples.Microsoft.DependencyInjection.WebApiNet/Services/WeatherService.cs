@@ -1,23 +1,21 @@
 ﻿using IocMapper;
-using Samples.Microsoft.DependencyInjection.WebApiNet6.Models;
-using System;
+using IocMapper.Mediator;
+using Samples.Microsoft.DependencyInjection.WebApiNet.Models;
+using Samples.Microsoft.DependencyInjection.WebApiNet.Services.Requests;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace Samples.Microsoft.DependencyInjection.WebApiNet6.Services
+namespace Samples.Microsoft.DependencyInjection.WebApiNet.Services
 {
     [Ioc(Lifetimes.Scoped)]
-    public class WeatherService : IWeatherService
+    public class WeatherService (IMediator mediator) : IWeatherService
     {
+        private readonly IMediator _mediator = mediator;
+
         public async Task<IEnumerable<WeatherForecast>> GetForecasts()
         {
-            var forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-            });
-            return await Task.FromResult(forecasts);
+            var forecasts = await _mediator.Send(new GetForecast());
+            return forecasts;
         }
     }
 }
