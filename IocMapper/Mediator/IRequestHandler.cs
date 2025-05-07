@@ -6,6 +6,6 @@ namespace IocMapper.Mediator
     public interface IRequestHandler<TRequestType>
         where TRequestType : IRequest
     {
-        Task Handle(TRequestType request, CancellationToken cancellationToken = default);
+        Task Handle(TRequestType request, CancellationToken cancellationToken);
     }
 }

@@ -69,3 +69,72 @@ layered architecture, or just separate libraries.
 This tool is meant to make IOC mapping easier. It is not intended to cover all possible ways to
 register dependencies, otherwise it would just become the tool it is trying to simplify and become
 too complex itself.
+
+## Mediator
+
+In line with the goal of simplifying IOC mapping, the IocMapper also includes a simple mediator
+pattern. First, to add the mediator when defining the services.
+
+    builder.Services.AddMediator();
+
+When no libraries are given, then just the current application will be added. If one or more types
+are specified, then the assemblies from each provided type will also be added.
+
+    builder.Services.AddMediator(typeoF(Program));
+
+Then, implement one or more requests and request handlers. They can be in the same file or in
+entirely different libraries (as long as all libraries are added to the configuration above).
+
+To create a simple request (no response is expected), then just implement the IRequest interface:
+
+    public class SimpleRequest : IRequest { ... }
+
+The handler can then be created to handle any requests from the mediator (such as Onion Architecture).
+
+    public class SimpleRequestHandler : IRequestHandler<SimpleRequest>
+    {
+        public async Task Handle(SimpleRequest request, CancellationToken cancellationToken)
+        {
+            // Do something
+        }
+    }
+
+The handler can also just be defined within the request class itself if not needing to separate
+the request and handler to separate libraries or files.
+
+    public class SimpleRequest : IRequest
+    {
+        public class Handler : IRequestHandler<SimpleRequest>
+        {
+            public async Task Handle(SimpleRequest request, CancellationToken cancellationToken)
+            {
+                // Do something
+            }
+        }
+    }
+
+A request can also have a response.
+
+    public class AddRequest(int value1, int value2) : IRequest<int>
+    {
+        public int Value1 { get; } = value1;
+        public int Value2 { get; } = value2;
+
+        public class Handler : IRequestHandler<AddRequest, int>
+        {
+            public async Task<int> Handle(AddRequest request, CancellationToken cancellationToken)
+            {
+                return Task.FromResult(request.Value1 + request.Value2);
+            }
+        }
+    }
+
+Finally, inject the `IMediator` into anything needing to send requests.
+
+    public class TestService(IMediator mediator)
+    {
+        private readonly IMediator _mediator = mediator;
+        
+        public async Task<int> Add(int a, int b)
+            => await _mediator.Send(new AddRequest(a, b));
+    }

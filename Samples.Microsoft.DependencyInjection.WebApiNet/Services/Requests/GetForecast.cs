@@ -12,7 +12,7 @@ namespace Samples.Microsoft.DependencyInjection.WebApiNet.Services.Requests
     {
         public class Handler : IRequestHandler<GetForecast, IEnumerable<WeatherForecast>>
         {
-            public Task<IEnumerable<WeatherForecast>> Handle(GetForecast request, CancellationToken cancellationToken = default)
+            public Task<IEnumerable<WeatherForecast>> Handle(GetForecast request, CancellationToken cancellationToken)
             {
                 return Task.FromResult(
                     Enumerable.Range(1, 5).Select(index => new WeatherForecast

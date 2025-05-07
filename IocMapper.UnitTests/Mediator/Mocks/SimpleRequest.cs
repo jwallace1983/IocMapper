@@ -10,7 +10,7 @@ namespace IocMapper.UnitTests.Mediator.Mocks
 
         public class Handler : IRequestHandler<SimpleRequest>
         {
-            public Task Handle(SimpleRequest request, CancellationToken cancellationToken = default)
+            public Task Handle(SimpleRequest request, CancellationToken cancellationToken)
             {
                 request.Counter++;
                 return Task.CompletedTask;
