@@ -12,7 +12,7 @@ namespace IocMapper.UnitTests.Mediator
         {
             // Arrange
             var services = new ServiceCollection()
-                .AddMediator()
+                .AddMediator(typeof(MediatorTest))
                 .BuildServiceProvider();
             var request = new SimpleRequest();
             var mediator = services.GetRequiredService<IMediator>();
@@ -29,7 +29,7 @@ namespace IocMapper.UnitTests.Mediator
         {
             // Arrange
             var services = new ServiceCollection()
-                .AddMediator()
+                .AddMediator(typeof(MediatorTest))
                 .BuildServiceProvider();
             var request = new AddRequest(1, 2);
             var mediator = services.GetRequiredService<IMediator>();

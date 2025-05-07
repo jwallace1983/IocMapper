@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IocMapper.Microsoft.DependencyInjection" Version="1.0.2" />
+    <ProjectReference Include="..\IocMapper\IocMapper.csproj" />
   </ItemGroup>
 
 </Project>
