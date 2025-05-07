@@ -9,10 +9,10 @@
     <Authors>Simplelink</Authors>
     <Company>Simplelink</Company>
     <Copyright>2025</Copyright>
-    <Description>A tool to simplify mapping interfaces and implementations for dependency injection and IOC.</Description>
+    <Description>A tool to simplify mapping interfaces and implementations for dependency injection and IOC. It also adds a simple mediator pattern</Description>
     <RepositoryUrl>https://github.com/jwallace1983/IocMapper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Updating framework versions</PackageReleaseNotes>
+    <PackageReleaseNotes>Add mediator capability</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/jwallace1983/IocMapper</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
