@@ -2,12 +2,12 @@
 
 namespace IocMapper.Reflectors
 {
-    public class IocMapping
+    public class IocMapping(Type service, Type implementation, Lifetimes lifetime)
     {
-        public Type Service { get; set; }
+        public Type Service { get; set; } = service;
 
-        public Type Implementation { get; set; }
+        public Type Implementation { get; set; } = implementation;
 
-        public Lifetimes Lifetime { get; set; }
+        public Lifetimes Lifetime { get; set; } = lifetime;
     }
 }

@@ -16,23 +16,10 @@ namespace IocMapper.UnitTests
 
             // Act
             var defaultService = services.GetService<IDefaultService>();
-
-            // Assert
-            defaultService.ShouldNotBeNull();
-        }
-
-        [Fact]
-        public void AddMediatorTest()
-        {
-            // Arrange
-            var services = new ServiceCollection()
-                .AddMediator(typeof(BootstrapTest))
-                .BuildServiceProvider();
-
-            // Act
             var mediator = services.GetService<IMediator>();
 
             // Assert
+            defaultService.ShouldNotBeNull();
             mediator.ShouldNotBeNull();
         }
     }

@@ -16,18 +16,11 @@ namespace Microsoft.Extensions.DependencyInjection
             var types = sources.Length > 0 ? sources
                 : [Assembly.GetCallingAssembly().DefinedTypes.First()];
             new IocReflector(types).AddMappings(services);
-            return services;
-        }
-
-        public static IServiceCollection AddMediator(this IServiceCollection services, params Type[] sources)
-        {
-            var types = sources.Length > 0 ? sources
-                : [Assembly.GetCallingAssembly().DefinedTypes.First()];
-            var reflector = new MediatorReflector(types);
-            reflector.AddMappings(services);
+            var mediatorReflector = new MediatorReflector(types);
+            mediatorReflector.AddMappings(services);
             services
                 .AddSingleton<IMediator, Mediator>()
-                .AddSingleton<IMediatorReflector>(reflector);
+                .AddSingleton<IMediatorReflector>(mediatorReflector);
             return services;
         }
     }

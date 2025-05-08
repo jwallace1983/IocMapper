@@ -25,12 +25,7 @@ namespace IocMapper.Reflectors
             var attribute = type.GetCustomAttribute<IocAttribute>(false);
             if (attribute == null)
                 return default;
-            var mapping = new IocMapping()
-            {
-                Implementation = type,
-                Service = attribute.Target,
-                Lifetime = attribute.Lifetime,
-            };
+            var mapping = new IocMapping(attribute.Target, type, attribute.Lifetime);
             var interfaces = type.GetInterfaces();
             if (mapping.Service == null)
             {

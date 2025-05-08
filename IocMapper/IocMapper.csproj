@@ -4,7 +4,7 @@
 	<TargetFrameworks>net8.0</TargetFrameworks>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
-	<Version>1.1.0</Version>
+	<Version>1.1.2</Version>
     <Title>IocMapper</Title>
     <Authors>Simplelink</Authors>
     <Company>Simplelink</Company>
@@ -12,7 +12,7 @@
     <Description>A tool to simplify mapping interfaces and implementations for dependency injection and IOC. It also adds a simple mediator pattern</Description>
     <RepositoryUrl>https://github.com/jwallace1983/IocMapper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Add mediator capability</PackageReleaseNotes>
+    <PackageReleaseNotes>Add mediator capability, simplify initialization</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/jwallace1983/IocMapper</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>

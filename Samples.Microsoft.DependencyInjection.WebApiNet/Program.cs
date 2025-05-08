@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddIocMappings()
-    .AddMediator()
     .AddControllers();
 
 // Configure
