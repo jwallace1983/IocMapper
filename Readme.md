@@ -73,16 +73,7 @@ too complex itself.
 ## Mediator
 
 In line with the goal of simplifying IOC mapping, the IocMapper also includes a simple mediator
-pattern. First, to add the mediator when defining the services.
-
-    builder.Services.AddMediator();
-
-When no libraries are given, then just the current application will be added. If one or more types
-are specified, then the assemblies from each provided type will also be added.
-
-    builder.Services.AddMediator(typeoF(Program));
-
-Then, implement one or more requests and request handlers. They can be in the same file or in
+pattern. First, implement one or more requests and request handlers. They can be in the same file or in
 entirely different libraries (as long as all libraries are added to the configuration above).
 
 To create a simple request (no response is expected), then just implement the IRequest interface:
