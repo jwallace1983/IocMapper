@@ -13,7 +13,7 @@ namespace IocMapper
         public static IServiceCollection AddIocMappings(this IServiceCollection services, params Type[] sources)
         {
             var types = sources.Length > 0 ? sources
-                : [Assembly.GetCallingAssembly().DefinedTypes.First()];
+                : new Type[] { Assembly.GetCallingAssembly().DefinedTypes.First() };
             new IocReflector(types).AddMappings(services);
             var mediatorReflector = new MediatorReflector(types);
             mediatorReflector.AddMappings(services);
