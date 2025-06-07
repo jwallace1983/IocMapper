@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFrameworks>net8.0</TargetFrameworks>
+	<TargetFrameworks>net8.0;net9.0;net462;netstandard2.1</TargetFrameworks>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
-	<Version>1.1.2</Version>
+	<Version>1.2.0</Version>
     <Title>IocMapper</Title>
     <Authors>Simplelink</Authors>
     <Company>Simplelink</Company>
@@ -12,14 +12,14 @@
     <Description>A tool to simplify mapping interfaces and implementations for dependency injection and IOC. It also adds a simple mediator pattern</Description>
     <RepositoryUrl>https://github.com/jwallace1983/IocMapper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Add mediator capability, simplify initialization, updated namespace for bootstrap</PackageReleaseNotes>
+    <PackageReleaseNotes>Support multiple frameworks</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/jwallace1983/IocMapper</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
   </ItemGroup>
 
 </Project>

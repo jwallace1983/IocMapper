@@ -7,11 +7,17 @@ using System.Threading.Tasks;
 
 namespace IocMapper.Mediator
 {
-    public class Mediator(IServiceProvider services, IMediatorReflector reflector) : IMediator
+    public class Mediator : IMediator
     {
-        private readonly IServiceProvider _services = services;
+        private readonly IServiceProvider _services;
 
-        private readonly IMediatorReflector _reflector = reflector;
+        private readonly IMediatorReflector _reflector;
+
+        public Mediator(IServiceProvider services, IMediatorReflector reflector)
+        {
+            _services = services;
+            _reflector = reflector;
+        }
 
         public async Task Send<TRequestType>(
             TRequestType request,
@@ -22,10 +28,10 @@ namespace IocMapper.Mediator
             var handlerType = (_reflector.Mappings.TryGetValue(key, out var mapping) ? mapping.HandlerType : null)
                 ?? throw new MappingException(typeof(TRequestType), "No handler found");
             var handler = _services.GetRequiredService(handlerType);
-            var method = handlerType.GetMethod("Handle", BindingFlags.Public | BindingFlags.Instance,
-                [ typeof(TRequestType), typeof(CancellationToken) ])
+            var types = new Type[] { typeof(TRequestType), typeof(CancellationToken) };
+            var method = handlerType.GetMethod("Handle", types)
                 ?? throw new MappingException(typeof(TRequestType), "No handle method found");
-            await (Task)method.Invoke(handler, [ request, cancellationToken ]);
+            await (Task)method.Invoke(handler, new object[] { request, cancellationToken });
         }
 
         public async Task<TResponseType> Send<TResponseType>(
@@ -37,10 +43,9 @@ namespace IocMapper.Mediator
             var handlerType = (_reflector.Mappings.TryGetValue(key, out var mapping) ? mapping.HandlerType : null)
                 ?? throw new MappingException(typeof(IRequest<TResponseType>), "No handler found");
             var handler = _services.GetRequiredService(handlerType);
-            var method = handlerType.GetMethod("Handle", BindingFlags.Public | BindingFlags.Instance,
-                [requestType, typeof(CancellationToken)])
+            var method = handlerType.GetMethod("Handle", new Type[] { requestType, typeof(CancellationToken) })
                 ?? throw new MappingException(typeof(IRequest<TResponseType>), "No handle method found");
-            return await (Task<TResponseType>)method.Invoke(handler, [request, cancellationToken]);
+            return await (Task<TResponseType>)method.Invoke(handler, new object[] { request, cancellationToken });
         }
     }
 }

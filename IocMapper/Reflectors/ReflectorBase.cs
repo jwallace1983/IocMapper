@@ -10,7 +10,7 @@ namespace IocMapper.Reflectors
     {
         public IEnumerable<Assembly> Assemblies => _assemblies;
 
-        private readonly List<Assembly> _assemblies = [];
+        private readonly List<Assembly> _assemblies = new List<Assembly>();
         
         public ReflectorBase(Type[] types)
         {

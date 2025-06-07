@@ -2,12 +2,19 @@
 
 namespace IocMapper.Reflectors
 {
-    public class MediatorMapping(Type handlerType, Type requestType, Type responseType = null)
+    public class MediatorMapping
     {
-        public Type HandlerType { get; } = handlerType;
+        public Type HandlerType { get; }
 
-        public Type RequestType { get; } = requestType;
+        public Type RequestType { get; }
 
-        public Type ResponseType { get; } = responseType;
+        public Type ResponseType { get; }
+
+        public MediatorMapping(Type handlerType, Type requestType, Type responseType = null)
+        {
+            this.HandlerType = handlerType;
+            this.RequestType = requestType;
+            this.ResponseType = responseType;
+        }
     }
 }

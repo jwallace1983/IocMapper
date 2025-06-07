@@ -2,9 +2,11 @@
 
 namespace IocMapper
 {
-    public class MappingException(Type type, string error = null)
-        : Exception(error ?? "mapping-error")
+    public class MappingException : Exception
     {
-        public Type Type { get; } = type;
+        public Type Type { get; }
+
+        public MappingException(Type type, string error = null) : base(error ?? "mapping-error")
+            => this.Type = type;
     }
 }
